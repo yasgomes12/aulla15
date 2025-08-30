@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Login</title>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script>
+        let estado = {
+            usuario: '',
+            senha: '',
+            logadoComSucesso: false
+        };
+
+        function atualizarEstado(event) {
+            estado[event.target.name] = event.target.value;
+            renderizar();
+        }
+
+        function fazerLogin() {
+            estado.logadoComSucesso = true;
+            renderizar();
+        }
+
+        function renderizar() {
+            const app = document.getElementById("app");
+            app.innerHTML = "";
+
+            if (estado.logadoComSucesso) {
+                const mensagem = document.createElement("h2");
+                mensagem.textContent = `Login bem-sucedido! Bem-vindo, ${estado.usuario}!`;
+                app.appendChild(mensagem);
+            } else {
+                const formulario = document.createElement("form");
+
+                formulario.innerHTML = `
+                    <h2>Login</h2>
+                    <label for="usuario">Usuário:</label>
+                    <input type="text" name="usuario" id="usuario"><br><br>
+                    
+                    <label for="senha">Senha:</label>
+                    <input type="password" name="senha" id="senha"><br><br>
+                    
+                    <button type="button">Entrar</button>
+                `;
+
+                formulario.querySelector("#usuario").addEventListener("input", atualizarEstado);
+                formulario.querySelector("#senha").addEventListener("input", atualizarEstado);
+                formulario.querySelector("button").addEventListener("click", fazerLogin);
+
+                app.appendChild(formulario);
+            }
+        }
+
+        renderizar();
+    </script>
+</body>
+</html>

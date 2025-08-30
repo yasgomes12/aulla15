@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toggle Texto</title>
+</head>
+<body>
+    <button id="toggleBotao">Mostrar Texto</button>
+    <p id="texto" style="display: none;">Este é um texto oculto que pode ser mostrado ou escondido.</p>
+
+    <script>
+        let mostrarTexto = false;
+        const botao = document.getElementById("toggleBotao");
+        const texto = document.getElementById("texto");
+
+        botao.addEventListener("click", () => {
+            mostrarTexto = !mostrarTexto;
+            texto.style.display = mostrarTexto ? "block" : "none";
+            botao.textContent = mostrarTexto ? "Ocultar Texto" : "Mostrar Texto";
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Login</title>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script>
+        let estado = {
+            usuario: '',
+            senha: '',
+            logadoComSucesso: false,
+            mensagemErro: ''
+        };
+
+        function atualizarEstado(event) {
+            estado[event.target.name] = event.target.value;
+            estado.mensagemErro = ''; // Limpa mensagem de erro ao digitar
+            renderizar();
+        }
+
+        function fazerLogin() {
+            if (estado.usuario.trim() === '') {
+                estado.mensagemErro = "Por favor, digite seu usuário.";
+                renderizar();
+                return;
+            }
+
+            estado.mensagemErro = '';
+            estado.logadoComSucesso = true;
+            renderizar();
+        }
+
+        function renderizar() {
+            const app = document.getElementById("app");
+            app.innerHTML = "";
+
+            if (estado.logadoComSucesso && estado.mensagemErro === '') {
+                const mensagem = document.createElement("h2");
+                mensagem.textContent = `Login bem-sucedido! Bem-vindo, ${estado.usuario}!`;
+                app.appendChild(mensagem);
+            } else {
+                if (estado.mensagemErro) {
+                    const erro = document.createElement("p");
+                    erro.style.color = "red";
+                    erro.textContent = estado.mensagemErro;
+                    app.appendChild(erro);
+                }
+
+                const formulario = document.createElement("form");
+
+                formulario.innerHTML = `
+                    <h2>Login</h2>
+                    <label for="usuario">Usuário:</label>
+                    <input type="text" name="usuario" id="usuario"><br><br>
+                    
+                    <label for="senha">Senha:</label>
+                    <input type="password" name="senha" id="senha"><br><br>
+
+                    <button type="button">Entrar</button>
+                `;
+
+                formulario.querySelector("#usuario").addEventListener("input", atualizarEstado);
+                formulario.querySelector("#senha").addEventListener("input", atualizarEstado);
+                formulario.querySelector("button").addEventListener("click", fazerLogin);
+
+                app.appendChild(formulario);
+            }
+        }
+
+        renderizar();
+    </script>
+</body>
+</html>

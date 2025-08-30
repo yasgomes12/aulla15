@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Login</title>
+</head>
+<body>
+    <h2>Login</h2>
+    <form id="loginForm">
+        <label for="usuario">Usuário:</label>
+        <input type="text" name="usuario" id="usuario" oninput="atualizarEstado(event)"><br><br>
+        
+        <label for="senha">Senha:</label>
+        <input type="password" name="senha" id="senha" oninput="atualizarEstado(event)"><br><br>
+        
+        <button type="submit">Entrar</button>
+    </form>
+
+    <script>
+        let estado = {
+            usuario: '',
+            senha: ''
+        };
+
+        function atualizarEstado(event) {
+            estado[event.target.name] = event.target.value;
+            console.log(estado);
+        }
+    </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Login</title>
+</head>
+<body>
+    <h2>Login</h2>
+    <form id="loginForm">
+        <label for="usuario">Usuário:</label>
+        <input type="text" name="usuario" id="usuario" oninput="atualizarEstado(event)"><br><br>
+        
+        <label for="senha">Senha:</label>
+        <input type="password" name="senha" id="senha" oninput="atualizarEstado(event)"><br><br>
+        
+        <button type="button">Entrar</button>
+    </form>
+
+    <h3>Valores do estado:</h3>
+    <p>Usuário: <span id="estadoUsuario"></span></p>
+    <p>Senha: <span id="estadoSenha"></span></p>
+
+    <script>
+        let estado1 = {
+            usuario: '',
+            senha: ''
+        };
+
+        function atualizarEstado(event) {
+            estado[event.target.name] = event.target.value;
+            document.getElementById("estadoUsuario").textContent = estado.usuario;
+            document.getElementById("estadoSenha").textContent = estado.senha;
+            console.log(estado);
+        }
+    </script>
+</body>
+</html>

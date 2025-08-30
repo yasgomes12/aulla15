@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador com Limite</title>
+</head>
+<body>
+    <h2>Contagem: <span id="contador">0</span></h2>
+    <button id="incrementar" onclick="incrementar()">Incrementar</button>
+
+    <script>
+        let contagem = 0;
+        const contadorElemento = document.getElementById("contador");
+        const botaoIncrementar = document.getElementById("incrementar");
+
+        function incrementar() {}
+            if (contagem < 10) {
+                contagem++;
+                contadorElemento.textContent = contagem;
+            }
+
+            // Esconde o botão se o limite for atingido
+            if (contagem >= 10) {
+                botaoIncrementar.style.display = "none";
+            }
+    </script>
+</body>
+</html>
+   
